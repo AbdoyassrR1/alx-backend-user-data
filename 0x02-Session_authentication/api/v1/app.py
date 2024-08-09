@@ -63,6 +63,13 @@ def before_request() -> str:
     if auth.current_user(request) is None:
         abort(403)
 
+    current_user = auth.current_user(request)
+    if current_user is None:
+        abort(403)
+
+    request.current_user = current_user
+
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
