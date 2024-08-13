@@ -31,14 +31,14 @@ class DB():
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str):
+    def add_user(self, email: str, hashed_password: str) -> User:
         """ add new user to the DataBase """
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
         return new_user
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """ Find User """
         if not kwargs:
             raise InvalidRequestError
@@ -53,3 +53,16 @@ class DB():
             raise NoResultFound
 
         return found_user
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ Update User """
+        user = self.find_user_by(id=user_id)
+
+        column_names = User.__table__.columns.keys()
+        for key in kwargs.keys():
+            if key not in column_names:
+                raise ValueError
+
+        for key, value in kwargs.items():
+            user.key = value
+        self._session.commit()
