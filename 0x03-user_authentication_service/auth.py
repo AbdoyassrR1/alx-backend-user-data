@@ -54,4 +54,5 @@ class Auth:
             return None
         new_session_id = _generate_uuid()
         user.session_id = new_session_id
+        self._db.__session.commit()
         return new_session_id
