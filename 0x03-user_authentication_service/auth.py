@@ -54,7 +54,6 @@ class Auth:
             return None
 
         new_session_id = _generate_uuid()
-        user.session_id = new_session_id
 
         self._db.update_user(user.id, session_id=new_session_id)
         return new_session_id
