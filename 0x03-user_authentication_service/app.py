@@ -8,13 +8,13 @@ AUTH = Auth()
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET"], strict_slashes=False)
 def get_payload():
     """get JSON payload"""
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route("/users", methods=["POST"])
+@app.route("/users", methods=["POST"], strict_slashes=False)
 def add_user():
     """ create new user """
     try:
@@ -30,7 +30,7 @@ def add_user():
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.route("/sessions", methods=["POST"])
+@app.route("/sessions", methods=["POST"], strict_slashes=False)
 def login() -> str:
     """ login the user """
     try:
@@ -51,7 +51,7 @@ def login() -> str:
     return response
 
 
-@app.route("/sessions", methods=["DELETE"])
+@app.route("/sessions", methods=["DELETE"], strict_slashes=False)
 def logout() -> str:
     """Find the user with the requested session ID.
     If the user exists destroy the session and redirect the user to GET /.
@@ -66,7 +66,7 @@ def logout() -> str:
     return redirect("/")
 
 
-@app.route("profile", methods=["GET"])
+@app.route("profile", methods=["GET"], strict_slashes=False)
 def profile() -> str:
     """  If the user exist,'
     respond with a 200 HTTP status and the following JSON payload:"""
