@@ -75,7 +75,7 @@ def profile():
     if session_id_cookie is None or user is None:
         abort(403)
 
-    jsonify({"email": user.email})
+    jsonify({"email": user.email}), 200
 
 
 if __name__ == "__main__":
