@@ -47,7 +47,8 @@ class Auth:
         return False
 
     def create_session(self, email: str) -> str:
-        """Create a new session"""
+        """Create a new session_id if the user found
+        and store it in database as users session_id, return session ID"""
         try:
             user = self._db.find_user_by(email=email)
         except NoResultFound:
