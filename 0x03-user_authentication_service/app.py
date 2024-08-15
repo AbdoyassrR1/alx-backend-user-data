@@ -58,10 +58,11 @@ if __name__ == "__main__":
 @app.route("/sessions", methods=["DELETE"])
 def logout():
     """logout the user"""
-    session_id = request.cookies.get("session_id", None)
-    if session_id is None:
+    user_cookie = request.cookies.get("session_id", None)
+    user = AUTH.get_user_from_session_id(user_cookie)
+
+    if user_cookie is None or user is None:
         abort(403)
-    user = AUTH.get_user_from_session_id(session_id)
-    if user:
-        AUTH.destroy_session(user.id)
-        return redirect("/")
+
+    AUTH.destroy_session(user.id)
+    return redirect("/")
