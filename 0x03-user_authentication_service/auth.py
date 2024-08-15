@@ -50,15 +50,15 @@ class Auth:
     def create_session(self, email: str) -> str:
         """Create a new session_id if the user found
         and store it in database as users session_id, return session ID"""
-        new_session_id = _generate_uuid()
         try:
             user = self._db.find_user_by(email=email)
-            self._db.update_user(user.id, session_id=new_session_id)
-            return new_session_id
         except NoResultFound:
             return None
 
+        new_session_id = _generate_uuid()
 
+        self._db.update_user(user.id, session_id=new_session_id)
+        return new_session_id
 
     def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
         """eturns the corresponding User or None.
