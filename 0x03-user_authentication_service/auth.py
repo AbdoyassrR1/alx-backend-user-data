@@ -73,4 +73,4 @@ class Auth:
         except NoResultFound:
             return None
 
-        return user
+        return user.email
