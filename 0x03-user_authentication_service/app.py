@@ -31,7 +31,7 @@ def add_user():
 
 
 @app.route("/sessions", methods=["POST"])
-def login():
+def login() -> str:
     """ login the user """
     try:
         email = request.form['email']
@@ -52,7 +52,7 @@ def login():
 
 
 @app.route("/sessions", methods=["DELETE"])
-def logout():
+def logout() -> str:
     """Find the user with the requested session ID.
     If the user exists destroy the session and redirect the user to GET /.
     If the user does not exist, respond with a 403 HTTP status."""
@@ -67,7 +67,7 @@ def logout():
 
 
 @app.route("profile", methods=["GET"])
-def profile():
+def profile() -> str:
     """  If the user exist,'
     respond with a 200 HTTP status and the following JSON payload:"""
     session_id_cookie = request.cookies.get("session_id", None)
