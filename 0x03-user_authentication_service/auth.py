@@ -74,3 +74,8 @@ class Auth:
             return None
 
         return user.email
+
+    def destroy_session(self, user_id: int) -> None:
+        """ takes a single user_id integer argument and returns None. """
+        self._db.update_user(user_id, session_id=None)
+        return None
