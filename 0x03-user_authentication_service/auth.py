@@ -97,7 +97,7 @@ class Auth:
         self._db.update_user(user.id, reset_token=reset_token)
         return reset_token
 
-    def update_password(self, reset_token: str, password: str) -> None:
+    def update_password(self, reset_token: str, password: str) -> str:
         """ Use the reset_token to find the corresponding user
         If it does not exist, raise a ValueError exception.
         Otherwise, hash the password and update the hashed_password field
@@ -110,4 +110,3 @@ class Auth:
         self._db.update_user(user.id,
                              hashed_password=hashed_password,
                              reset_token=None)
-        return None
