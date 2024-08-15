@@ -102,6 +102,8 @@ class Auth:
         If it does not exist, raise a ValueError exception.
         Otherwise, hash the password and update the hashed_password field
         with the new hashed password and the reset_token field to None."""
+        if reset_token is None or password is None:
+            return None
         try:
             user = self._db.find_user_by(reset_token=reset_token)
         except NoResultFound:
