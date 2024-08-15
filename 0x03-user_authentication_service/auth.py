@@ -60,7 +60,7 @@ class Auth:
         self._db.update_user(user.id, session_id=new_session_id)
         return new_session_id
 
-    def get_user_from_session_id(self, session_id: str) -> Union[str, None]:
+    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
         """eturns the corresponding User or None.
         If the session ID is None or no user is found, return None
         Otherwise return the corresponding user
