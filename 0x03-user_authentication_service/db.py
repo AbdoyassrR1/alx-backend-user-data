@@ -58,7 +58,7 @@ class DB():
         """ Update User """
         user = self.find_user_by(id=user_id)
 
-        column_names = User.__table__.columns.keys()
+        column_names = ["id", "email", "hashed_password", "session_id", "reset_token"]
         for key in kwargs.keys():
             if key not in column_names:
                 raise ValueError
