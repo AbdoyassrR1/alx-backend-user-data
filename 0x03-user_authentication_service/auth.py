@@ -58,7 +58,6 @@ class Auth:
         except NoResultFound:
             return None
 
-
         return new_session_id
 
     def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
