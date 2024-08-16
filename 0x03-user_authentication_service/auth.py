@@ -98,7 +98,12 @@ class Auth:
         return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """Uses reset token to validate update of users password"""
+        """It takes reset_token string argument and a password string argument
+        and returns None.
+        Use the reset_token to find the corresponding user
+        If it does not exist, raise a ValueError exception.
+        Otherwise, hash the password and update the hashed_password field with
+        the new hashed password and the reset_token field to None."""
         if reset_token is None or password is None:
             return None
 
